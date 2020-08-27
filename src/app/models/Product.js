@@ -5,12 +5,13 @@ const ProductSchema = new mongoose.Schema({
 
     name:{
         type: String,
-        required: true
+        required: true,
     },
     category:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
-        required: true
+        required: true,
+        lowercase: true,
     },
     description: {
         type: String,
@@ -20,7 +21,7 @@ const ProductSchema = new mongoose.Schema({
 },{
     timestamps : true,
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'},
-    versionKey: false
+    versionKey: false,
 })
 
 

@@ -3,6 +3,17 @@ import User from '../models/User';
 
 class UserController{
 
+    async index(req, res){
+        
+        try{
+            const users = User.find()
+
+           return res.json(users)
+        } catch{
+            return res.status(400).json({ error: 'Error Loading users'})
+        }
+    }
+
     async store(req, res){
 
         const { email } = req.body

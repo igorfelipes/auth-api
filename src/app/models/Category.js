@@ -5,16 +5,16 @@ const CategorySchema = new mongoose.Schema({
 
     name:{
         type: String,
-        required: true
+        required: true,
+        lowercase: true,
     },
     description: {
         type: String,
-        required: true,
     },
     products: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-    }]
+        ref: 'Product',
+    }],
   
 },{
     timestamps : true,
