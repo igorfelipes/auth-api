@@ -16,9 +16,9 @@ class SessionController{
             return res.status(401).json({ error: 'User not found' })
         }
 
-        if(!(await bcrypt.compare(password, user.password))){
-            return res.status(401).json({ error: 'Password does not match.'})
-        }        
+        // if(!(await bcrypt.compare(password, user.password))){
+        //     return res.status(401).json({ error: 'Password does not match.'})
+        // }        
         
         if(!(await user.checkPassword(password))){
             return res.status(401).json({ error: 'Password does not match.'})

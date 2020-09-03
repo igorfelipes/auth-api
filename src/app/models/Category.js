@@ -23,6 +23,10 @@ const CategorySchema = new mongoose.Schema({
 })
 
 
+CategorySchema.methods.cascadeRemove = async function (){
+    console.log(this)
+}
+
 const Category = mongoose.model('Category', CategorySchema);
 
 export default Category;

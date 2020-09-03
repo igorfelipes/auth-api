@@ -56,11 +56,40 @@ class CategoryController{
     }
 
     async update(req, res){
-        return res.json({user: req.userId})
+
+        const id  = req.params.id;
+
+        try{
+            const category = await Category.findOneAndUpdate({ _id: id }, req.body, { new: true })
+
+            if (!category){
+                res.status(401).json({ error: 'category not found.'})
+            }
+            
+            return res.json(category)
+        } catch{
+            return res.status(401).json({ error: 'Error remove categroy.'})
+        }
     }
 
     async destroy(req, res){
-        return res.json({user: req.userId})
+
+        const id = req.params.id;
+        
+        try{
+            const category = await Category.findOneAndDelete({ _id: id})
+
+            if (!category){
+                return res.status(401).json({ error: 'Category not found.'});
+            }
+
+            category.cascadeRemove()
+            
+            return res.json({ message: 'Category removed successful.'});
+        } catch{
+            return res.status(401).json({ error: 'Error remove category.'});
+        }
+
     }
 }
 
