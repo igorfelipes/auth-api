@@ -83,7 +83,7 @@ class CategoryController{
                 return res.status(401).json({ error: 'Category not found.'});
             }
 
-            category.cascadeRemove()
+            await category.cascadeRemove()
             
             return res.json({ message: 'Category removed successful.'});
         } catch{

@@ -1,4 +1,5 @@
 import mongoose from '../../database';
+import Product from '../models/Product'
 
 
 const CategorySchema = new mongoose.Schema({
@@ -24,7 +25,9 @@ const CategorySchema = new mongoose.Schema({
 
 
 CategorySchema.methods.cascadeRemove = async function (){
-    console.log(this)
+    this.products.map( async product =>{
+        await Product.findOneAndDelete({ _id: product._id})
+    })
 }
 
 const Category = mongoose.model('Category', CategorySchema);
